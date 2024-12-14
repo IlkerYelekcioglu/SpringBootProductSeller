@@ -14,5 +14,5 @@ import org.springframework.data.repository.query.Param;
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
 
   @Query("select prd.name as name,pur.price as price, pur.purchaseTime as purchaseTime from Purchase  pur left join Product prd on prd.id = pur.id where pur.userId = :userId")
-  List<PurchaseItem> findAllByPurchasesOfUSer(@Param("userId") Long userId);
+  List<PurchaseItem> findAllByPurchasesOfUser(@Param("userId") Long userId);
 }
