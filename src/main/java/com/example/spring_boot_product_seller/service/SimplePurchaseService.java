@@ -25,6 +25,7 @@ public class SimplePurchaseService implements PurchaseService {
     purchase.setPurchaseTime(LocalDateTime.now());
     return purchaseRepository.save(purchase);
   }
+
   @Override
   public List<PurchaseItem> findAllPurchaseItemsOfUser(Long userId) {
    return purchaseRepository.findAllByPurchasesOfUser(userId);
