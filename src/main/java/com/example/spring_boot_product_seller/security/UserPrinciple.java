@@ -2,7 +2,6 @@ package com.example.spring_boot_product_seller.security;
 
 import com.example.spring_boot_product_seller.model.User;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

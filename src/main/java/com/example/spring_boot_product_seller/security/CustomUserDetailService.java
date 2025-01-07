@@ -6,6 +6,7 @@ import com.example.spring_boot_product_seller.utils.SecurityUtils;
 import java.util.HashSet;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Service;
 public class CustomUserDetailService implements UserDetailsService{
 
   @Autowired
+  @Lazy
   private UserService userService;
 
   @Override
@@ -29,7 +31,6 @@ public class CustomUserDetailService implements UserDetailsService{
     Set<GrantedAuthority> authorities = Set.of(SecurityUtils.convertToAuthority(user.getRole().name()));
 
 
-    //UserDetail
     return UserPrinciple.builder()
         .user(user)
         .id(user.getId())
