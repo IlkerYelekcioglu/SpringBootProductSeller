@@ -16,10 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class SimpleUserService implements UserService {
-      @Autowired
-      private UserRepository userRepository;
 
-      private final PasswordEncoder passwordEncoder;
+  @Autowired
+ private UserRepository userRepository;
+
+  private final PasswordEncoder passwordEncoder;
   public SimpleUserService(
    UserRepository userRepository, PasswordEncoder passwordEncoder) {
     this.userRepository = userRepository;

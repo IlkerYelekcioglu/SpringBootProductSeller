@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import java.time.LocalDateTime;
 import lombok.Data;
 
@@ -38,13 +39,19 @@ public class User {
   @Column(name = "CREATE_TIME",nullable = false)
   private LocalDateTime createTime;
 
-  //role
   @Enumerated(EnumType.STRING)
   @Column(name = "ROLE",nullable = false)
   private Role role;
+
+  @Transient
+  private String token;
 
   /*
   Eğer enumdan alınıcak bir değeri entity içerisine tanımladığımızda @Column hariç enumerated annotasyonunu kullanırız.
    */
 
+  /*
+  Java'nın transient anahtar sözcüğü bir alanın serileştirilmeyeceğini belirtmek için kullanılırken,
+  JPA'nın @Transient açıklaması bir alanın veritabanında kalıcı hale getirilmeyeceğini belirtmek için kullanılır, yani semantikleri farklıdır.
+   */
 }
