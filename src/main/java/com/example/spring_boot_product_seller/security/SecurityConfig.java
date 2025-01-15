@@ -31,13 +31,14 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
-        .csrf(csrf -> csrf.disable()) // CSRF'yi devre dışı bırak
+        .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers(new AntPathRequestMatcher("/api/authentication/**")).permitAll() // Public endpoints
-            .anyRequest().authenticated() // Diğer tüm istekler kimlik doğrulaması gerektirir
+            .requestMatchers(new AntPathRequestMatcher("/api/authentication/**")).permitAll()
+            .requestMatchers("/api/product/**").permitAll()
+            .anyRequest().authenticated()
         )
         .sessionManagement(session -> session
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Stateless oturum yönetimi
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         );
 
     http.addFilterBefore(jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -51,7 +52,6 @@ public class SecurityConfig {
   }
 
 
-  //Why don't we describe it as a component because of scope
   @Bean
   public JwtAuthorizationFilter jwtAuthorizationFilter(){
     return new JwtAuthorizationFilter();
